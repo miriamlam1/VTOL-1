@@ -17,13 +17,13 @@
     "role_switching": false,
     "comms_simulated": {
       "toggled_on": true,
-      "comm_sim_file": "comm_sim_quick_scan.txt"
+      "comm_sim_file": "comm_sim_quick_scan.json"
     }
   },
   "detailed_search_specific": {
     "comms_simulated": {
       "toggled_on": true,
-      "comm_sim_file": "comm_sim_detailed_search.txt"
+      "comm_sim_file": "comm_sim_detailed_search.json"
     }
   }
 }
