@@ -82,7 +82,6 @@ def orbit_poi(vehicle, poi, configs):
         cmds.add(
             Command(0, 0, 0, mavutil.mavlink.MAV_FRAME_GLOBAL_RELATIVE_ALT, mavutil.mavlink.MAV_CMD_NAV_WAYPOINT,
                     0, 0, 0, 0, 0, 0, point.lat, point.lon, point.alt))
-        print(point.lat, point.lon, point.alt)
 
     print("Upload new commands to vehicle")
     cmds.upload()
@@ -167,7 +166,6 @@ def detailed_search_autonomy(configs, autonomyToCV, gcs_timestamp, connection_ti
             # Set the POI's altitude
             poi.alt = configs["altitude"]
 
-            print("At POI, now orbiting")
             orbit_poi(vehicle, poi, configs)
             # Change flight mode to AUTO to start auto mission
             vehicle.mode = VehicleMode("AUTO")
@@ -177,8 +175,6 @@ def detailed_search_autonomy(configs, autonomyToCV, gcs_timestamp, connection_ti
                     # TODO start CV scanning
                     pass
                 print(vehicle.location.global_frame)
-                print(vehicle.commands.next)
-                print(vehicle.commands.count)
                 time.sleep(1)
             # TODO stop CV scanning
 
