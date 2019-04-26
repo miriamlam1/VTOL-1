@@ -1,6 +1,7 @@
 import json
 import datetime
 import subprocess
+import sys
 
 def parse_configs(argv):
     """Parses the .json file given as the first command line argument.
@@ -24,15 +25,19 @@ def new_output_file():
 
     # makes logs folder if not existing already
     try:
-        subprocess.check_output(["ls", "logs/"], stderr=subprocess.STDOUT)
+        subprocess.check_output(["cd", "logs/"], shell=True, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError:
-        subprocess.call(["mkdir", "logs/"])
+        subprocess.call(["mkdir", "logs/"], shell=True)
 
     # makes folder for the current date in logs folder if not existing already
     try:
-        subprocess.check_output(["ls", "logs/" + date], stderr=subprocess.STDOUT)
+        subprocess.check_output(["cd", "logs/" + date], shell=True, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError:
-        subprocess.call(["mkdir", "logs/" + date])
+        if sys.platform == "darwin" or sys.platform == "linux" or sys.platform == "linux2":
+            subprocess.call(["mkdir", "logs/" + date], shell=True)
+        elif sys.platform == "win32":
+            # Windows cmd handles mkdir path in a strange way
+            subprocess.call(["mkdir", "logs\\" + date], shell=True)
 
     # open file for current time
     return open("logs/" + date + "/" + time.replace(":", ".") + ".txt", "w")

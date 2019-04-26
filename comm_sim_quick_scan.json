@@ -3,8 +3,13 @@
         "time": 0.75,
         "message": {
             "type":"addMission",
-            "searchArea":{"center":[35.328375, -120.752615],
-            "rad1":0, "rad2":20},
+            "missionInfo" : {
+                "searchArea": {
+                    "center":[35.328375, -120.752615],
+                    "rad1":0, 
+                    "rad2":20
+                }
+            },
             "id":0
         }
     }
