@@ -1,0 +1,8 @@
+
+######################## STARTING DETAILED SEARCH AUTONOMY ########################
+Starting copter simulator (SITL)
+SITL already Downloaded and Extracted.
+Ready to boot.
+>>> APM:Copter V3.3 (d6053245)
+>>> Frame: QUAD
+>>> Calibrating barometer

@@ -3,7 +3,7 @@ import json
 from threading import Thread
 from dronekit import connect, Command, VehicleMode, LocationGlobalRelative
 import math
-import conversions
+from conversions import ecef2ned, geodetic2ecef, ned2geodetic
 import time
 from pymavlink import mavutil
 
@@ -26,9 +26,10 @@ def xbee_callback(message, autonomyToCV):
     try:
         msg_type = msg["type"]
 
+
         if msg_type == "addMission":
             msg_lat = msg['missionInfo']['lat']
-            msg_lon = msg['missionInfo']['lng']
+            msg_lon = msg['missionInfo']['lon']
 
             # convert mission coordinates to dronekit object, and add to POI queue
             POI_queue.put(LocationGlobalRelative(msg_lat, msg_lon, None))
@@ -59,11 +60,13 @@ def xbee_callback(message, autonomyToCV):
 
 def orbit_poi(vehicle, poi, configs):
     waypoints = []  # waypoints in LLA
+    altitude = configs["altitude"]
     poi_scan_altitude = configs["detailed_search_specific"]["poi_scan_altitude"]
     waypoint_tolerance = configs["waypoint_tolerance"]
     radius = configs["radius"]  # radius of circle travelled
     orbit_number = configs["orbit_number"]  # how many times we repeat orbit
-    x, y, z = conversions.geodetic2ecef(poi.lat, poi.lon, configs["altitude"])  # LLA -> ECEF
+    x, y, z = geodetic2ecef(poi.lat, poi.lon, altitude)  # LLA -> ECEF
+    n, e, d = ecef2ned(x, y, z, poi.lat, poi.lon, altitude)  # ECEF -> NED
     cmds = vehicle.commands
     cmds.clear()
 
@@ -72,11 +75,11 @@ def orbit_poi(vehicle, poi, configs):
     point_list = [[1, 0], [c, c], [0, 1], [-c, c], [-1, 0], [-c, -c], [0, -1], [c, -c], [1, 0]]
     for orbit in range(orbit_number):
         for point in point_list:
-            a = (radius * point[0]) + x
-            b = (radius * point[1]) + y
-            lat, lon, alt = conversions.ecef2geodetic(a, b, z)
-            waypoints.append(LocationGlobalRelative(lat, lon, poi_scan_altitude))
-    
+            a = (radius * point[0]) + n
+            b = (radius * point[1]) + e
+            lat, lon, alt = ned2geodetic(a, b, d, poi.lat, poi.lon, altitude)  # NED -> LLA
+            waypoints.append(LocationGlobalRelative(lat, lon, alt))
+
     # Go to center of POI
     if (configs["vehicle_type"] == "VTOL"):
         cmds.add(
@@ -192,7 +195,6 @@ def detailed_search_autonomy(configs, autonomyToCV, gcs_timestamp, connection_ti
     while not autonomy.stop_mission:
         if not POI_queue.empty() and not autonomy.pause_mission:
             poi = POI_queue.get()
-            print("Orbiting POI")
 
             orbit_poi(vehicle, poi, configs)
             # Change flight mode to AUTO to start auto mission
@@ -206,8 +208,6 @@ def detailed_search_autonomy(configs, autonomyToCV, gcs_timestamp, connection_ti
                     pass
 
                 print(vehicle.location.global_relative_frame)
-                print(vehicle.commands.next)
-                print(vehicle.commands.count)
 
                 time.sleep(1)
             # TODO stop CV scanning

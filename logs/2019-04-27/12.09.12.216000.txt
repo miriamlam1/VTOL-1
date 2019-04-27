@@ -1,0 +1,43 @@
+
+######################## STARTING DETAILED SEARCH AUTONOMY ########################
+Starting copter simulator (SITL)
+SITL already Downloaded and Extracted.
+Ready to boot.
+>>> APM:Copter V3.3 (d6053245)
+>>> Frame: QUAD
+>>> Calibrating barometer
+>>> Initialising APM...
+>>> barometer calibration complete
+>>> GROUND START
+Starting update thread
+ Clear any existing commands
+
+ Waiting for vehicle to initialise...
+>>> flight plan received
+ Waiting for vehicle to initialise...
+ Waiting for vehicle to initialise...
+ Waiting for vehicle to initialise...
+ Waiting for vehicle to initialise...
+ Waiting for arming...
+ Waiting for arming...
+ Waiting for arming...
+ Waiting for arming...
+>>> ARMING MOTORS
+>>> GROUND START
+ Waiting for arming...
+>>> Link timeout, no heartbeat in last 5 seconds
+>>> ...link restored.
+>>> Initialising APM...
+ Waiting for arming...
+('Altitude: ', 0.0)
+('Altitude: ', 0.0)
+('Altitude: ', 0.29)
+('Altitude: ', 1.64)
+('Altitude: ', 3.52)
+('Altitude: ', 6.14)
+Received data from comms simulation: {u'missionInfo': {u'lat': 35.32848, u'lon': -120.75259}, u'type': u'addMission', u'id': 0}
+('Error:', "Missing 'lng' key")
+Received data from comms simulation: {u'type': u'pause', u'id': 0}
+Received data from comms simulation: {u'type': u'resume', u'id': 0}
+Received data from comms simulation: {u'type': u'stop', u'id': 0}
+Returning to launch
