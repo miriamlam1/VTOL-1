@@ -1,0 +1,97 @@
+
+######################## STARTING DETAILED SEARCH AUTONOMY ########################
+Starting copter simulator (SITL)
+SITL already Downloaded and Extracted.
+Ready to boot.
+>>> APM:Copter V3.3 (d6053245)
+>>> Frame: QUAD
+>>> Calibrating barometer
+>>> Initialising APM...
+>>> barometer calibration complete
+>>> GROUND START
+ Clear any existing commands
+Starting update thread
+
+ Waiting for vehicle to initialise...
+>>> flight plan received
+ Waiting for vehicle to initialise...
+ Waiting for vehicle to initialise...
+ Waiting for vehicle to initialise...
+ Waiting for vehicle to initialise...
+ Waiting for vehicle to initialise...
+ Waiting for arming...
+ Waiting for arming...
+ Waiting for arming...
+ Waiting for arming...
+>>> ARMING MOTORS
+>>> GROUND START
+ Waiting for arming...
+>>> Link timeout, no heartbeat in last 5 seconds
+>>> ...link restored.
+>>> Initialising APM...
+('Altitude: ', 0.0)
+('Altitude: ', 0.0)
+('Altitude: ', 0.02)
+('Altitude: ', 0.85)
+('Altitude: ', 2.06)
+('Altitude: ', 3.5)
+('Altitude: ', 5.59)
+('Altitude: ', 7.19)
+Received data from comms simulation: {u'missionInfo': {u'lat': 35.32848, u'lng': -120.75259}, u'type': u'addMission', u'id': 0}
+89.99999213427638
+89.99999215229768
+89.99999216960212
+89.99999215188471
+89.99999213429759
+89.99999215161543
+89.99999216960212
+89.99999215229768
+89.99999213427638
+Upload new commands to vehicle
+LocationGlobalRelative:lat=35.3284237,lon=-120.7525055,alt=8.37
+>>> flight plan received
+LocationGlobalRelative:lat=35.3284238,lon=-120.7525052,alt=8.33
+LocationGlobalRelative:lat=35.328426,lon=-120.7525092,alt=8.17
+LocationGlobalRelative:lat=35.3284329,lon=-120.7525189,alt=7.71
+LocationGlobalRelative:lat=35.3284431,lon=-120.7525335,alt=6.84
+LocationGlobalRelative:lat=35.3284544,lon=-120.7525498,alt=6.04
+>>> Reached Command #1
+LocationGlobalRelative:lat=35.3284659,lon=-120.7525654,alt=5.42
+LocationGlobalRelative:lat=35.3284821,lon=-120.7525749,alt=5.11
+>>> Reached Command #2
+LocationGlobalRelative:lat=35.3285041,lon=-120.7525806,alt=5.02
+LocationGlobalRelative:lat=35.3285308,lon=-120.7525852,alt=4.99
+LocationGlobalRelative:lat=35.3285509,lon=-120.7525874,alt=4.99
+LocationGlobalRelative:lat=35.328565,lon=-120.7525886,alt=4.98
+LocationGlobalRelative:lat=35.3285717,lon=-120.7525862,alt=4.98
+LocationGlobalRelative:lat=35.3285724,lon=-120.7525755,alt=4.98
+LocationGlobalRelative:lat=35.3285693,lon=-120.752562,alt=4.98
+>>> Reached Command #3
+LocationGlobalRelative:lat=35.3285625,lon=-120.7525423,alt=4.97
+LocationGlobalRelative:lat=35.3285496,lon=-120.7525259,alt=4.98
+>>> Reached Command #4
+LocationGlobalRelative:lat=35.3285308,lon=-120.7525111,alt=4.98
+LocationGlobalRelative:lat=35.3285077,lon=-120.7524997,alt=4.99
+>>> Reached Command #5
+LocationGlobalRelative:lat=35.3284828,lon=-120.7524977,alt=4.99
+LocationGlobalRelative:lat=35.3284562,lon=-120.7525017,alt=5.0
+LocationGlobalRelative:lat=35.3284348,lon=-120.752515,alt=5.0
+>>> Reached Command #6
+LocationGlobalRelative:lat=35.3284158,lon=-120.7525365,alt=5.0
+LocationGlobalRelative:lat=35.328405,lon=-120.7525608,alt=5.0
+>>> Reached Command #7
+LocationGlobalRelative:lat=35.3284012,lon=-120.7525901,alt=5.0
+LocationGlobalRelative:lat=35.3284043,lon=-120.7526201,alt=5.01
+LocationGlobalRelative:lat=35.328415,lon=-120.7526441,alt=5.0
+>>> Reached Command #8
+LocationGlobalRelative:lat=35.3284328,lon=-120.7526662,alt=5.0
+LocationGlobalRelative:lat=35.3284481,lon=-120.7526765,alt=5.01
+>>> Reached Command #9
+LocationGlobalRelative:lat=35.3284715,lon=-120.752683,alt=5.0
+LocationGlobalRelative:lat=35.3284974,lon=-120.7526816,alt=5.01
+LocationGlobalRelative:lat=35.3285134,lon=-120.7526745,alt=5.01
+>>> Reached Command #10
+Received data from comms simulation: {u'type': u'pause', u'id': 0}
+Received data from comms simulation: {u'type': u'resume', u'id': 0}
+Received data from comms simulation: {u'type': u'stop', u'id': 0}
+Returning to launch

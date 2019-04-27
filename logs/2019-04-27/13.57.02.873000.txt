@@ -1,0 +1,52 @@
+
+######################## STARTING DETAILED SEARCH AUTONOMY ########################
+Starting copter simulator (SITL)
+SITL already Downloaded and Extracted.
+Ready to boot.
+>>> APM:Copter V3.3 (d6053245)
+>>> Frame: QUAD
+>>> Calibrating barometer
+>>> Initialising APM...
+>>> barometer calibration complete
+>>> GROUND START
+ Clear any existing commandsStarting update thread
+
+
+ Waiting for vehicle to initialise...
+>>> flight plan received
+ Waiting for vehicle to initialise...
+ Waiting for vehicle to initialise...
+ Waiting for vehicle to initialise...
+ Waiting for vehicle to initialise...
+ Waiting for vehicle to initialise...
+ Waiting for arming...
+ Waiting for arming...
+ Waiting for arming...
+ Waiting for arming...
+>>> ARMING MOTORS
+>>> GROUND START
+ Waiting for arming...
+>>> Link timeout, no heartbeat in last 5 seconds
+>>> ...link restored.
+>>> Initialising APM...
+('Altitude: ', 0.0)
+('Altitude: ', 0.0)
+('Altitude: ', 0.09)
+('Altitude: ', 0.82)
+('Altitude: ', 2.49)
+('Altitude: ', 4.49)
+('Altitude: ', 6.62)
+Received data from comms simulation: {u'missionInfo': {u'lat': 35.32848, u'lng': -120.75259}, u'type': u'addMission', u'id': 0}
+Upload new commands to vehicle
+>>> Exception in message handler for MISSION_REQUEST
+>>> required argument is not a float
+>>> Exception in message handler for MISSION_REQUEST
+>>> required argument is not a float
+>>> Exception in message handler for MISSION_REQUEST
+>>> required argument is not a float
+>>> Exception in message handler for MISSION_REQUEST
+>>> required argument is not a float
+>>> Exception in message handler for MISSION_REQUEST
+>>> required argument is not a float
+>>> Exception in message handler for MISSION_REQUEST
+>>> required argument is not a float

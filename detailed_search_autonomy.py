@@ -29,7 +29,7 @@ def xbee_callback(message, autonomyToCV):
 
         if msg_type == "addMission":
             msg_lat = msg['missionInfo']['lat']
-            msg_lon = msg['missionInfo']['lon']
+            msg_lon = msg['missionInfo']['lng']
 
             # convert mission coordinates to dronekit object, and add to POI queue
             POI_queue.put(LocationGlobalRelative(msg_lat, msg_lon, None))
@@ -65,8 +65,8 @@ def orbit_poi(vehicle, poi, configs):
     waypoint_tolerance = configs["waypoint_tolerance"]
     radius = configs["radius"]  # radius of circle travelled
     orbit_number = configs["orbit_number"]  # how many times we repeat orbit
-    x, y, z = geodetic2ecef(poi.lat, poi.lon, altitude)  # LLA -> ECEF
-    n, e, d = ecef2ned(x, y, z, poi.lat, poi.lon, altitude)  # ECEF -> NED
+    x, y, z = geodetic2ecef(poi.lat, poi.lon, poi_scan_altitude)  # LLA -> ECEF
+    n, e, d = ecef2ned(x, y, z, poi.lat, poi.lon, poi_scan_altitude)  # ECEF -> NED
     cmds = vehicle.commands
     cmds.clear()
 
@@ -77,7 +77,7 @@ def orbit_poi(vehicle, poi, configs):
         for point in point_list:
             a = (radius * point[0]) + n
             b = (radius * point[1]) + e
-            lat, lon, alt = ned2geodetic(a, b, d, poi.lat, poi.lon, altitude)  # NED -> LLA
+            lat, lon, alt = ned2geodetic(a, b, d, poi.lat, poi.lon, poi_scan_altitude)  # NED -> LLA
             waypoints.append(LocationGlobalRelative(lat, lon, alt))
 
     # Go to center of POI
@@ -85,6 +85,7 @@ def orbit_poi(vehicle, poi, configs):
         cmds.add(
             Command(0, 0, 0, mavutil.mavlink.MAV_FRAME_GLOBAL_RELATIVE_ALT, mavutil.mavlink.MAV_CMD_NAV_WAYPOINT, 0, 0,
                     0, waypoint_tolerance, 0, 0, poi.lat, poi.lon, poi_scan_altitude))
+
     elif (configs["vehicle_type"] == "Quadcopter"):
         cmds.add(
             Command(0, 0, 0, mavutil.mavlink.MAV_FRAME_GLOBAL_RELATIVE_ALT, mavutil.mavlink.MAV_CMD_NAV_WAYPOINT, 0, 0,
@@ -101,12 +102,12 @@ def orbit_poi(vehicle, poi, configs):
         for point in waypoints:
             cmds.add(
                 Command(0, 0, 0, mavutil.mavlink.MAV_FRAME_GLOBAL_RELATIVE_ALT, mavutil.mavlink.MAV_CMD_NAV_WAYPOINT, 0, 0,
-                        waypoint_tolerance, 0, 0, 0, point.lat, point.lon, poi_scan_altitude))
+                        waypoint_tolerance, 0, 0, 0, point.lat, point.lon, point.alt))
     elif (configs["vehicle_type"] == "Quadcopter"):
          for point in waypoints:
             cmds.add(
                 Command(0, 0, 0, mavutil.mavlink.MAV_FRAME_GLOBAL_RELATIVE_ALT, mavutil.mavlink.MAV_CMD_NAV_WAYPOINT, 0, 0,
-                        0, 0, 0, 0, point.lat, point.lon, poi_scan_altitude))       
+                        0, 0, 0, 0, point.lat, point.lon, point.alt))
 
     # Transition to forward flight if applicable
     if (configs["vehicle_type"] == "VTOL"):
